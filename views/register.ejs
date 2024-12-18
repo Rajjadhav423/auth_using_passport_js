@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: url('https://gratisography.com/wp-content/uploads/2024/10/gratisography-cool-cat-800x525.jpg') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .user {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .user h2 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #333;
+      text-align: center;
+    }
+
+    .forms {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .forms_field {
+      margin-bottom: 20px;
+    }
+
+    .forms_field label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .forms_field-input {
+      width: 100%;
+      padding: 10px 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      color: #555;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .forms_field-input:focus {
+      border-color: #007BFF;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    .forms_buttons {
+      display: flex;
+      justify-content: center;
+    }
+
+    .forms_buttons button {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .forms_buttons button:hover {
+      background-color: #0056b3;
+    }
+
+    @media (max-width: 480px) {
+      .user {
+        padding: 20px;
+      }
+
+      .forms_field-input {
+        font-size: 14px;
+      }
+
+      .forms_buttons button {
+        font-size: 14px;
+        padding: 8px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="user">
+    <h2>Register</h2>
+    <form action="/register" method="POST" class="forms">
+      <div class="forms_field">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" placeholder="Enter your username" class="forms_field-input"  />
+      </div>
+      <div class="forms_field">
+        <label for="pic">Profile Picture</label>
+        <input id="pic" name="pic" type="text" placeholder="Enter profile picture URL" class="forms_field-input"  />
+      </div>
+      <div class="forms_field">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" placeholder="Enter your password" class="forms_field-input"  />
+      </div>
+      <div class="forms_buttons">
+        <button type="submit">Register</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

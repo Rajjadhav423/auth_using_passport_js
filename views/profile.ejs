@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;700&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to bottom right, #e7dcff, #ffeacb, #f6f1ff);
+    }
+
+    .profile-card {
+      background: #fefeff;
+      border-radius: 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      padding: 50px;
+      text-align: center;
+      max-width: 486px;
+      width: 100%;
+    }
+
+    .profile-image {
+      width: 119px;
+      height: 119px;
+      border-radius: 20px;
+      margin-bottom: 15px;
+      box-shadow: 1px 1px 0 12px #f6f2ff;
+    }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    p {
+      max-width: 214px;
+      width: 100%;
+      margin: 10px auto;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .follow-button,
+    .message-button {
+      border: none;
+      padding: 15px 40px;
+      border-radius: 35px;
+      cursor: pointer;
+      background: none;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      margin-top: 25px;
+      transition: background-color 0.3s ease;
+    }
+
+    .follow-button {
+      background: linear-gradient(to right, #fa3967, #fa9639);
+    }
+
+    .message-button {
+      background: #ffedd2;
+    }
+
+    .follow-button:hover {
+      background: linear-gradient(to right, #fa9639, #fa3967);
+    }
+
+    .message-button:hover {
+      background: #ffe0b2;
+    }
+
+    @media (max-width: 520px) {
+      .profile-card {
+        width: 90%;
+      }
+
+      .button-container {
+        flex-direction: column;
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-card">
+    <!-- User Profile Image -->
+    <img src="<%= user.pic %>" alt="Profile Picture" class="profile-image">
+    <!-- User Name -->
+    <h2><%= user.username %></h2>
+    <p>Building next-gen energy tech products at Company</p>
+    <div class="button-container">
+      <button class="follow-button" data-following="false" onclick="follow()">
+        <i class="fa-solid fa-user-plus"></i> Follow
+      </button>
+      <button class="message-button" onclick="sendMessage()">
+        <i class="fa-regular fa-message"></i> Send message
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function follow() {
+      const followButton = document.querySelector(".follow-button");
+
+      if (followButton.getAttribute("data-following") === "false") {
+        followButton.innerHTML = `<i class="fa-solid fa-user-check"></i> Following`;
+        followButton.style.background = "linear-gradient(to right, #42a5f5, #64b5f6)";
+        followButton.setAttribute("data-following", "true");
+      } else {
+        followButton.innerHTML = `<i class="fa-solid fa-user-plus"></i> Follow`;
+        followButton.style.background = "linear-gradient(to right, #fa3967, #fa9639)";
+        followButton.setAttribute("data-following", "false");
+      }
+    }
+
+    function sendMessage() {
+      const messageBox = document.createElement("div");
+      messageBox.classList.add("message-box");
+
+      messageBox.innerHTML = `
+        <div class="message-content">
+          <h3>Send a Message to <%= user.username %></h3>
+          <textarea id="messageInput" placeholder="Type your message here..."></textarea>
+          <button class="send-button" onclick="submitMessage()">Send</button>
+        </div>
+      `;
+
+      document.body.appendChild(messageBox);
+    }
+
+    function submitMessage() {
+      const messageInput = document.getElementById("messageInput").value.trim();
+
+      if (messageInput === "") {
+        alert("Please type your message.");
+      } else {
+        const messageBox = document.querySelector(".message-content");
+        messageBox.innerHTML = "<p>Message sent!</p>";
+
+        setTimeout(closeMessageBox, 1500);
+      }
+    }
+
+    function closeMessageBox() {
+      const messageBox = document.querySelector(".message-box");
+      if (messageBox) {
+        messageBox.remove();
+      }
+    }
+  </script>
+</body>
+</html>
