@@ -30,7 +30,7 @@ To use this project, follow these steps:
 
 4. **Start the Server**:
    ```bash
-   npm start
+   npx nodemon
    ```
 
 5. **Access the Application**:
